@@ -23,10 +23,7 @@ gas_df$id[which(gas_df$id == "3")] <- "Reno"
 ##
 #Make a backup of the full scrape
 
-sys <- Sys.Date()
-
-sys <- gsub("[:]", "_", sys)
-sys <- gsub("-", "_", sys)
+sys <- format(Sys.time(), "%Y_%m_%d_h%H")
 
 sys <- paste0("data/NV_", sys, ".csv", collapse = NULL)
 
