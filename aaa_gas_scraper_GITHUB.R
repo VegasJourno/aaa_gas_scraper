@@ -23,15 +23,6 @@ gas_df$id[which(gas_df$id == "2")] <- "Las_Vegas"
 gas_df$id[which(gas_df$id == "3")] <- "Reno"
 
 ##
-#Render Word report
-docx_report_path <- paste0("data/aaa_", 
-                           sys,
-                           '.docx', sep='')
-
-rmarkdown::render("D:/aaa_gas_report.Rmd",
-                  output_file = docx_report_path)
-
-##
 #Make a backup of the full scrape
 
 sys <- format(Sys.time(), "%Y_%m_%d_h%H")
@@ -39,6 +30,15 @@ sys <- format(Sys.time(), "%Y_%m_%d_h%H")
 sys_path <- paste0("data/NV_", sys, ".csv", collapse = NULL)
 
 write.csv(gas_df, file=sys_path,row.names=FALSE)
+
+##
+#Render Word report
+docx_report_path <- paste0("data/aaa_", 
+                           sys,
+                           '.docx', sep='')
+
+rmarkdown::render("D:/aaa_gas_report.Rmd",
+                  output_file = docx_report_path)
 
 #Email the output CSVs (Master, and Media Only)
 send.mail(from = "lvrjautodata@gmail.com",
