@@ -1,22 +1,28 @@
-name: R Scraper
-
-on:
-  schedule:
-    - cron: "0 8 * * *" # 8 a.m. every day UTC
-  workflow_dispatch:
-
+name: penguins-have-long-noses
+on: [push]
 jobs:
-  scrape:
+  run:
     runs-on: [ubuntu-latest]
+    container: docker://dvcorg/cml:latest
     steps:
       - uses: actions/checkout@v2
-      - uses: r-lib/actions/setup-r@master
+      
+      - name: Setup R
+        uses: r-lib/actions/setup-r@master
         
       - name: Setup dependencies
         run: |
-          R -e 'install.packages("tidyverse")' 
-          R -e 'install.packages("rvest")' 
-          R -e 'install.packages("janitor")' 
+          R -e 'install.packages("renv")' 
+          R -e 'renv::restore()'
           
-      - name: Run scraper
-      run: aaa_gas_scraper_GITHUB.R
+      - name: Analyze some penguin beaks
+        env: 
+          repo_token: ${{ secrets.GITHUB_TOKEN }} 
+        run: |
+          R -e 'renv::run("penguin_analysis.R")'
+          # Add picture
+          cml-publish my_penguin_plot.png --md > report.md 
+          # Add table
+          cat mymodel.html >> report.md
+          # Send report
+          cml-send-comment report.md
