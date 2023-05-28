@@ -3,6 +3,8 @@ name: Scrape
 on:
   schedule:
     - cron:  '0 13 * * *'
+  workflow_dispatch:
+    
 jobs: 
   autoscrape:
     runs-on: [macos-latest]
