@@ -42,5 +42,5 @@ send.mail(from = "lvrjautodata@gmail.com",
                       ssl = TRUE),
           authenticate = TRUE,
           send = TRUE,
-          attach.files = c(sys_path, docx_report_path),
-          file.names = c("aaa_gas.csv", "aaa_gas.docx"))
+          attach.files = c(sys_path),
+          file.names = c("aaa_gas.csv")
