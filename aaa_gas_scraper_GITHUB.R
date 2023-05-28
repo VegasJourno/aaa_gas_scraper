@@ -2,6 +2,7 @@ library(tidyverse)
 library(rvest)
 library(lubridate)
 library(mailR)
+library(rmarkdown)
 
 aaa_nv <- read_html("https://gasprices.aaa.com/?state=NV")
 
@@ -20,6 +21,15 @@ gas_df <- gas_df %>%
 gas_df$id[which(gas_df$id == "1")] <- "Nevada"
 gas_df$id[which(gas_df$id == "2")] <- "Las_Vegas"
 gas_df$id[which(gas_df$id == "3")] <- "Reno"
+
+##
+#Render Word report
+docx_report_path <- paste0("data/aaa_", 
+                           sys,
+                           '.docx', sep='')
+
+rmarkdown::render("D:/aaa_gas_report.Rmd",
+                  output_file = docx_report_path)
 
 ##
 #Make a backup of the full scrape
@@ -42,5 +52,5 @@ send.mail(from = "lvrjautodata@gmail.com",
                       ssl = TRUE),
           authenticate = TRUE,
           send = TRUE,
-          attach.files = c(sys_path),
-          file.names = c("aaa_gas.csv"))
+          attach.files = c(sys_path, docx_report_path),
+          file.names = c("aaa_gas.csv", "aaa_gas.docx"))
