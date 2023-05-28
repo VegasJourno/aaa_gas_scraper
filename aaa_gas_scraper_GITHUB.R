@@ -1,6 +1,7 @@
 library(tidyverse)
 library(rvest)
 library(lubridate)
+library(mailR)
 
 aaa_nv <- read_html("https://gasprices.aaa.com/?state=NV")
 
@@ -25,6 +26,21 @@ gas_df$id[which(gas_df$id == "3")] <- "Reno"
 
 sys <- format(Sys.time(), "%Y_%m_%d_h%H")
 
-sys <- paste0("data/NV_", sys, ".csv", collapse = NULL)
+sys_path <- paste0("data/NV_", sys, ".csv", collapse = NULL)
 
-write.csv(gas_df, file=sys,row.names=FALSE)
+write.csv(gas_df, file=sys_path,row.names=FALSE)
+
+#Email the output CSVs (Master, and Media Only)
+send.mail(from = "lvrjautodata@gmail.com",
+          to = c("michaeldmedia@gmail.com"),
+          subject = paste0("AAA Scraper NV - Export: ", sys),
+          body = "Test GitHub Scraper for AAA Gas Prices",
+          smtp = list(host.name = "smtp.gmail.com", port = 465, 
+                      user.name = "lvrjautodata", 
+                      #Generated app password thru Gmail security settings
+                      passwd = "llxgybjlubznaofm", 
+                      ssl = TRUE),
+          authenticate = TRUE,
+          send = TRUE,
+          attach.files = c(sys_path),
+          file.names = c("aaa_gas.csv"))
