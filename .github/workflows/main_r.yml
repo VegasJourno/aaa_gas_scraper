@@ -1,4 +1,4 @@
-name: penguins-have-long-noses
+name: Scrape
 on: [push]
 jobs:
   run:
@@ -15,3 +15,8 @@ jobs:
           R -e 'install.packages("tidyverse")' 
           R -e 'install.packages("rvest")' 
           R -e 'install.packages("janitor")' 
+          
+      - name: Run scraper
+        run: Rscript aaa_gas_scraper_GITHUB.R
+          
+    
