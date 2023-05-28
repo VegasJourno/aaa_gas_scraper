@@ -28,6 +28,6 @@ sys <- Sys.Date()
 sys <- gsub("[:]", "_", sys)
 sys <- gsub("-", "_", sys)
 
-sys <- paste0("NV_", sys, ".csv", collapse = NULL)
+sys <- paste0("data/NV_", sys, ".csv", collapse = NULL)
 
 write.csv(gas_df, file=sys,row.names=FALSE)
