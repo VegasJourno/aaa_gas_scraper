@@ -1,8 +1,10 @@
 name: Scrape
 # Controls when the action will run.
 on:
-  schedule:
-    - cron: "0 19 * * *" # 7 p.m. every day UTC (11 am PST)
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
   workflow_dispatch:
     
 jobs: 
