@@ -54,3 +54,18 @@ send.mail(from = "lvrjautodata@gmail.com",
           send = TRUE,
           attach.files = c(sys_path, docx_report_path),
           file.names = c("aaa_gas.csv", "aaa_gas.docx"))
+###
+###
+
+#Allows access to Google Drive
+drive_auth(email = "lvrjautodata@gmail.com")
+
+#File path to my specific folder
+td <- drive_get("https://https://drive.google.com/drive/folders/1x1bOEFqagFfqOy-5AovQ6NDUCJrC3bBd")
+
+#Update (overwrite) the Google Sheet: "lvmpd_master_pr_tracker"
+drive_put(sys_path, 
+          name = "aaa_gas_master", 
+          type = "spreadsheet", 
+          path=as_id(td))
+
