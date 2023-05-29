@@ -58,7 +58,7 @@ send.mail(from = "lvrjautodata@gmail.com",
 ###
 library(googledrive)
 #Allows access to Google Drive
-drive_auth(path = "https://github.com/VegasJourno/aaa_gas_scraper/blob/main/client_secret_563153099490-d75bci2k3hveuq55qc550qlom2vr3era.apps.googleusercontent.com.json")
+drive_auth(path = "client_secret_563153099490-d75bci2k3hveuq55qc550qlom2vr3era.apps.googleusercontent.com.json")
 
 #File path to my specific folder
 td <- drive_get("https://https://drive.google.com/drive/folders/1x1bOEFqagFfqOy-5AovQ6NDUCJrC3bBd")
