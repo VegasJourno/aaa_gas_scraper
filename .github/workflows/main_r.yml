@@ -21,6 +21,7 @@ jobs:
           R -e 'install.packages("janitor")' 
           R -e 'install.packages("mailR")'
           R -e 'install.packages("rmarkdown")' 
+          R -e 'install.packages("pandoc")' 
           
       - name: Run Scraper
         run: Rscript aaa_gas_scraper_GITHUB.R
