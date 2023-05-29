@@ -19,8 +19,7 @@ jobs:
           R -e 'install.packages("tidyverse")' 
           R -e 'install.packages("rvest")' 
           R -e 'install.packages("janitor")' 
-          R -e 'install.packages("mailR")' 
-          R -e 'install.packages("googledrive")' 
+          R -e 'install.packages("mailR")'
           R -e 'install.packages("rmarkdown")' 
           
       - name: Run Scraper
