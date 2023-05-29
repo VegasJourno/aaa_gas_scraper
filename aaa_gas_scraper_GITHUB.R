@@ -2,6 +2,7 @@ library(tidyverse)
 library(rvest)
 library(lubridate)
 library(mailR)
+library(googledrive)
 
 aaa_nv <- read_html("https://gasprices.aaa.com/?state=NV")
 
