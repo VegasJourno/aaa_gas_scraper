@@ -56,7 +56,7 @@ send.mail(from = "lvrjautodata@gmail.com",
           file.names = c("aaa_gas.csv", "aaa_gas.docx"))
 ###
 ###
-
+library(googledrive)
 #Allows access to Google Drive
 drive_auth(email = "lvrjautodata@gmail.com")
 
