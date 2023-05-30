@@ -34,6 +34,7 @@ jobs:
           GMAIL_SENDER: ${{ secrets.GMAIL_SENDER }}
           GMAIL_RECIPIENT: ${{ secrets.GMAIL_RECIPIENT }}
           DRIVE_JSON: ${{ secrets.DRIVE_JSON }}
+          DRIVE_FOLDER: ${{ secrets.DRIVE_FOLDER }}
         run: Rscript aaa_gas_scraper_GITHUB.R
         
       - name: Add and commit	
