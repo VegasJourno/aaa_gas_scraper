@@ -59,21 +59,3 @@ send.mail(from = GMAIL_SENDER,
           send = TRUE,
           attach.files = c(sys_path, docx_report_path),
           file.names = c("aaa_gas.csv", "aaa_gas.docx"))
-
-####
-####
-####
-
-#Attempt to upload results to google drive
-library(googledrive)
-GDRIVE_JSON <- Sys.getenv("GDRIVE_JSON")
-
-drive_auth(path = GDRIVE_JSON)
-
-td <- drive_get("https://drive.google.com/drive/folders/1x1bOEFqagFfqOy-5AovQ6NDUCJrC3bBd")
-
-#Import the most current day's gas prices into Google Drive
-drive_put(gas_df, 
-	name = paste0("NV_", sys, ".csv", collapse = NULL), 
-	type = "spreadsheet", path=as_id(td))
-
