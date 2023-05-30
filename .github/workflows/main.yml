@@ -25,6 +25,7 @@ jobs:
           R -e 'install.packages("mailR")'
           R -e 'install.packages("rmarkdown")' 
           R -e 'install.packages("pandocs")' 
+          R -e 'install.packages("googledrive")' 
           
       - name: Run Scraper
         env: 
