@@ -78,6 +78,6 @@ td <- drive_get(DRIVE_FOLDER)
 #Import the most current day's gas prices into Google Drive
 drive_put(sys_path, 
           name = 
-            paste0("NV_gas_prices_", sys) 
+            paste0("NV_gas_prices_", sys), 
           type = "spreadsheet", 
           path=as_id(td))
