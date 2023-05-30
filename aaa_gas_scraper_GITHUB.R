@@ -59,3 +59,20 @@ send.mail(from = GMAIL_SENDER,
           send = TRUE,
           attach.files = c(sys_path, docx_report_path),
           file.names = c("aaa_gas.csv", "aaa_gas.docx"))
+
+###
+###
+library(googledrive)
+options(googledrive_quiet = TRUE)
+
+## Authenticate into googledrive service account ----
+## 'GOOGLE_APPLICATION_CREDENTIALS' is what we named the Github Secret that 
+## contains the credential JSON file
+DRIVE_JSON <- Sys.getenv("DRIVE_JSON")
+
+googledrive::drive_auth(path = DRIVE_JSON)
+
+td <- drive_get("https://drive.google.com/drive/folders/1x1bOEFqagFfqOy-5AovQ6NDUCJrC3bBd")
+
+#Import the most current day's gas prices into Google Drive
+drive_put(sys_path, name = "current_gas_prices", type = "spreadsheet", path=as_id(td))
