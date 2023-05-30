@@ -41,14 +41,14 @@ rmarkdown::render("aaa_gas_report.Rmd",
                   output_file = docx_report_path)
 
 #Email the output CSVs (Master, and Media Only)
-send.mail(from = "lvrjautodata@gmail.com",
-          to = c("michaeldmedia@gmail.com"),
+send.mail(from = GMAIL_SENDER,
+          to = c(GMAIL_RECIPIENT),
           subject = paste0("AAA Scraper NV - Export: ", sys),
           body = "Test GitHub Scraper for AAA Gas Prices",
           smtp = list(host.name = "smtp.gmail.com", port = 465, 
-                      user.name = "lvrjautodata", 
+                      user.name = GMAIL_USER, 
                       #Generated app password thru Gmail security settings
-                      passwd = "llxgybjlubznaofm", 
+                      passwd = GMAIL_PASS, 
                       ssl = TRUE),
           authenticate = TRUE,
           send = TRUE,
