@@ -32,7 +32,7 @@ gas_df$id[which(gas_df$id == "3")] <- "Reno"
 
 sys <- format(Sys.time(), "%Y_%m_%d")
 
-sys_path <- paste0("data/NV_", sys, ".csv", collapse = NULL)
+sys_path <- paste0("data/NV_gas_prices_", sys, ".csv", collapse = NULL)
 
 write.csv(gas_df, file=sys_path,row.names=FALSE)
 
@@ -69,10 +69,15 @@ options(googledrive_quiet = TRUE)
 ## 'GOOGLE_APPLICATION_CREDENTIALS' is what we named the Github Secret that 
 ## contains the credential JSON file
 DRIVE_JSON <- Sys.getenv("DRIVE_JSON")
+DRIVE_FOLDER <- Sys.getenv("DRIVE_FOLDER")
 
 googledrive::drive_auth(path = DRIVE_JSON)
 
-td <- drive_get("https://drive.google.com/drive/folders/1x1bOEFqagFfqOy-5AovQ6NDUCJrC3bBd")
+td <- drive_get(DRIVE_FOLDER)
 
 #Import the most current day's gas prices into Google Drive
-drive_put(sys_path, name = "current_gas_prices", type = "spreadsheet", path=as_id(td))
+drive_put(sys_path, 
+          name = 
+            paste0("NV_gas_prices_", sys) 
+          type = "spreadsheet", 
+          path=as_id(td))
