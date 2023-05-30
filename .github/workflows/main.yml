@@ -29,6 +29,11 @@ jobs:
           R -e 'install.packages("pandocs")' 
           
       - name: Run Scraper
+        env: 
+          GMAIL_PASS: ${{ secrets.GMAIL_PASS }}
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_SENDER: ${{ secrets.GMAIL_SENDER }}
+          GMAIL_RECIPIENT: ${{ secrets.GMAIL_RECIPIENT }}
         run: Rscript aaa_gas_scraper_GITHUB.R
         
       - name: Add and commit	
