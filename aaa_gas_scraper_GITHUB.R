@@ -65,7 +65,7 @@ send.mail(from = GMAIL_SENDER,
 ####
 
 #Attempt to upload results to google drive
-
+library(googledrive)
 GDRIVE_JSON <- Sys.getenv("GDRIVE_JSON")
 
 drive_auth(path = GDRIVE_JSON)
