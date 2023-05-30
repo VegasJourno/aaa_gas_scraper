@@ -4,6 +4,11 @@ library(lubridate)
 library(mailR)
 library(rmarkdown)
 
+GMAIL_SENDER <- Sys.getenv("GMAIL_SENDER")
+GMAIL_RECIPIENT <- Sys.getenv("GMAIL_RECIPIENT")
+GMAIL_USER <- Sys.getenv("GMAIL_USER")
+GMAIL_PASS <- Sys.getenv("GMAIL_PASS")
+
 aaa_nv <- read_html("https://gasprices.aaa.com/?state=NV")
 
 gas_nv <- aaa_nv %>% html_nodes(".table-mob tr:nth-child(1) td") %>%
