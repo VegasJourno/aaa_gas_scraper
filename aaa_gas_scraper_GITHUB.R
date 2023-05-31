@@ -75,9 +75,16 @@ googledrive::drive_auth(path = DRIVE_JSON)
 
 td <- drive_get(DRIVE_FOLDER)
 
-#Import the most current day's gas prices into Google Drive
+#Import the most current day's gas prices into Google Drive for historical record
 drive_put(sys_path, 
           name = 
             paste0("NV_gas_prices_", sys), 
+          type = "spreadsheet", 
+          path=as_id(td))
+
+#Import the most current day's gas prices into Google Drive as Latest Prices
+##Overwrites existing file
+drive_put(sys_path, 
+          name = "Latest_NV_gas_prices", 
           type = "spreadsheet", 
           path=as_id(td))
